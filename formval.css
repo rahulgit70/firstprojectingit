@@ -1,0 +1,515 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/*
+ css for main.html 
+*/
+.main_div{
+	width: 100vw;
+	height: 100vh;
+	background-color: #fff;
+}
+.main_div h1{
+	text-align: center;
+	color: #127994;
+}
+ .img-fluid{
+  	height: 170px;
+  	width: 660px;
+  	margin-bottom: 160px;
+  }
+
+  .delete{
+  	background-color: blue;
+  	color: white;
+  	opacity: 0.9;
+  }
+  .delete:hover{
+  	opacity: 1;
+  }
+  
+
+
+/*
+css for registeration.html
+*/
+.main{
+	width: 100vw;
+	height: 100vh;
+	background:linear-gradient(to right top,#FBB03B,#D4145A);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+.mainreg{
+	background-color: #fff;
+	margin-top: 45px;
+	border-radius: 20px;
+
+}
+
+.regimg{
+margin-left: 0px;
+border-radius: 20px;
+
+}
+.container{
+	position: relative;
+	margin: 5px 10px;
+}
+.container p{
+	font-size: 1.5em;
+	margin-left: 20px;
+}
+ input[type=text], input[type=password] ,input[type=number] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
+  background-color: #ddd;
+  outline: none;
+  border-color: #777;
+}
+.container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.container.error small{
+	visibility: visible;
+}
+.submit {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.submit:hover {
+  opacity:1;
+}
+
+/*
+login page start
+
+*/
+
+.login_main{
+	width: 100vw;
+	height: 100vh;
+	background:linear-gradient(to right top,#5de6de,#b58ecc);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+.login_child{
+	width: 40vw;
+	height: 70vh;
+	background-color: #fff;
+
+}
+.login_container{
+	margin: 10px 20px;
+	position: relative;
+
+}
+.input{
+	position: absolute;
+	width: 100%;
+	padding: 5px 10px;
+
+}
+.login_container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.login_container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.login_container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.login_container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.login_container.error small{
+	visibility: visible;
+}
+.login_container a {
+	text-decoration: none;
+}
+.login_container p{
+	margin-left: 10px 20px;
+
+}
+.submit2 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submit2:hover {
+  opacity:1;
+}
+
+
+
+/*change password
+*/
+.change_main{
+	width: 100vw;
+	height: 100vh;
+	background:linear-gradient(to right top,#36096d,#37d5d6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.change_child{
+	width: 40vw;
+	height: 70vh;
+	background-color: #fff;
+
+}
+.change_container{
+	margin: 10px 20px;
+	position: relative;
+
+}
+.input{
+	position: absolute;
+	width: 100%;
+	padding: 5px 10px;
+
+}
+.change_container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.change_container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.change_container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.change_container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.change_container.error small{
+	visibility: visible;
+}
+
+.submit3 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submit3:hover {
+  opacity:1;
+}
+
+/*
+forgot password
+*/
+.forgot_main{
+	width: 100vw;
+	height: 100vh;
+	background:linear-gradient(to right top,#90d5ec,#fc575e);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.forgot_child{
+	width: 40vw;
+	height: 70vh;
+	background-color: #fff;
+
+}
+.forgot_container{
+	margin: 10px 20px;
+	position: relative;
+
+}
+.input{
+	position: absolute;
+	width: 100%;
+	padding: 5px 10px;
+
+}
+.forgot_container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.forgot_container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.forgot_container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.forgot_container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.forgot_container.error small{
+	visibility: visible;
+}
+a{
+	text-decoration: none;
+}
+
+.submit4 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submit4:hover {
+  opacity:1;
+}
+
+/*
+css for userprofile.html
+*/
+
+
+
+.user_main{
+	width: 100vw;
+	height: 100%;
+    background:linear-gradient(to right top,#0cbaba,#380036);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.user_child{
+	width: 40vw;
+	height:100%;
+	background-color: #fff;
+
+}
+.user_container{
+	margin: 10px 20px;
+	position: relative;
+
+}
+.input{
+	position: absolute;
+	width: 100%;
+	padding: 5px 10px; 
+
+}
+.user_container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.user_container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.user_container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.user_container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.user_container.error small{
+	visibility: visible;
+}
+
+.gender{
+	margin-right: 30px;
+	
+}
+
+.submit5 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submit5:hover {
+  opacity:1;
+}
+/*
+ css for deleteaccount
+*/
+
+.deleteaccount_main{
+	width: 100vw;
+	height: 100vh;
+    background:linear-gradient(to right top,#01baef,#20bf55);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.deleteaccount_child{
+	width: 50vw;
+	height:80%;
+	background-color: #fff;
+
+}
+.deleteaccount_container{
+	position: relative;
+	margin: 10px 20px;
+	
+
+
+}
+.input{
+	position: absolute;
+	width: 100%;
+	padding: 5px 10px;
+	font-size: 1.5em;
+
+}
+
+
+.deleteaccount_container i{
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+
+}
+
+
+.deleteaccount_container small{
+	color: #e74c3c;
+   position: absolute;
+   bottom: 0;
+   left: 0;
+	visibility: hidden;
+}
+
+.deleteaccount_container.success i.fa-check-circle{
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.deleteaccount_container.error i.fa-exclamation-circle{
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.deleteaccount_container.error small{
+	visibility: visible;
+}
+
+
+.submit6 {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.submit6:hover {
+  opacity:1;
+}

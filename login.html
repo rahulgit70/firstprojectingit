@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="formval.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+</head>
+<body>
+
+	<div class="login_main">
+		<div class="login_child">
+			<form class="form">
+				<div class="login_container">
+					<label for="emailId"><b>EMAIL</b></label>
+				    <input type="text" name="emailId" class="emailId" placeholder="EMAIL" autocomplete="off" required>
+				    <i class="fas fa-check-circle"></i>
+			   	   	<i class="fas fa-exclamation-circle"></i>
+			   	    <small>Error Msg</small></br>
+			   </div>
+			   <div class="login_container">
+			    	<label for="pass"><b>PASSWORD</b></label>
+				    <input type="password" name="pass" class="pass" placeholder="Password" autocomplete="off" required>
+				    <i class="fas fa-check-circle"></i>
+			   	   	<i class="fas fa-exclamation-circle"></i>
+			   	    <small>Error Msg</small></br>
+			   </div>
+                
+                <div class="login_container">
+				  <input type="submit" name="submit2" class="submit2" value="login">
+			    </div>
+
+			</form>
+
+			<div class="login_container">
+				<p>If you want to change password?<a href="change.html">click here</a>.</p>
+				<p>Forgot Password?<a href="forgot.html">click here</a>.</p>
+			</div>
+
+
+		</div>
+
+<script type="text/javascript">
+	const form=document.querySelector('.form');
+	const emailId=document.querySelector('.emailId');
+	const pass=document.querySelector('.pass');
+
+	form.addEventListener('submit',(event)=>{
+		event.preventDefault();
+
+		validation();
+	});
+
+
+	
+
+	const validation =()=>{
+		
+
+	    //validate name
+         var emailId=document.querySelector('.emailId');
+	    var pass=document.querySelector('.pass');
+
+	    var userdata=localStorage.getItem("user");
+	    var retrivedata=JSON.parse(userdata);
+	    var l=retrivedata.length;
+	    var i=0;
+	    for( i=0;i<l;i++)
+	    {
+	    	if(retrivedata[i].email==emailId.value)
+	    	{
+	    		setSuccessMsg(emailId);
+
+	    		if(retrivedata[i].password==pass.value){
+	    	         setSuccessMsg(pass);
+
+	    			alert('you are successfully logged')
+	    			location.href="technical.html";
+	    			
+				const items = (() => {
+				  const fieldValue = localStorage.getItem('loginuser');
+				  return fieldValue === null
+				    ? []
+				    : JSON.parse(fieldValue);
+				})();
+
+				items.push({"email":emailId.value,password:pass.value});
+
+				localStorage.setItem('userlogin', JSON.stringify(items));
+
+	    		}
+	    		else
+	    			setErrorMsg(pass ,'password not matched');
+
+
+	    		break;
+	    	}
+
+	    }
+	    if(i==l)
+	    {
+	    	setErrorMsg(emailId ,'email is not registered');
+	    	alert('login failed');
+	    }
+	}
+	   
+
+
+function setErrorMsg(input,errormsgs){
+		const Container = input.parentElement;
+		const small = Container.querySelector('small');
+		Container.className = "login_container error";
+		small.innerText = errormsgs;
+	}
+
+	function setSuccessMsg(input){
+		const Container = input.parentElement;
+		Container.className= "login_container success";
+	}
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

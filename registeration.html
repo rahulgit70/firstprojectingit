@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>form validation</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="formval.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+</head>
+<body>
+	<div class="main">
+			<div class="row mb-5 mainreg ">
+			  <div class="col-lg-6 col-md-6 col-12 regimg" >
+				<img src="images/ui1.jpg" class="img-fluid" style="height: 100%;">
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-12 bg-light regimg">
+			 <form class="form">
+				<div class="head">
+				   
+
+				   <div class="container">
+	                   <label for="name"><b>NAME</b></label>
+	                   <input type="text" name="name" class="name" placeholder="Enter Your Name" autocomplete="off" required>
+	                   <i class="fas fa-check-circle"></i>
+			   	   	   <i class="fas fa-exclamation-circle"></i>
+			   	   	   <small>Error Msg</small></br>
+		   	   	   </div>
+
+                   <div class="container">
+			   	   	   <label for="email"><b>EMAIL</b></label>
+	                   <input type="text" name="email" class="email" placeholder="Enter Your Email" autocomplete="off" required>
+	                   <i class="fas fa-check-circle"></i>
+			   	   	   <i class="fas fa-exclamation-circle"></i>
+			   	   	   <small>Error Msg</small></br>
+		   	   	   </div>
+		 
+
+                   <div class="container">
+			   	   	   <label for="psw"><b>PASSWORD</b></label>
+	                   <input type="password" name="psw" class="psw" placeholder="Password" autocomplete="off" required>
+	                   <i class="fas fa-check-circle"></i>
+			   	   	   <i class="fas fa-exclamation-circle"></i>
+			   	   	   <small>Error Msg</small></br>
+		   	   	   </div>
+ 
+                    <div class="container">
+			   	   	    <label for="cpsw"><b>CONFORM PASSWORD</b></label>
+	                   <input type="password" name="cpsw" class="cpsw" placeholder="Conform Password" autocomplete="off" required>
+	                   <i class="fas fa-check-circle"></i>
+			   	   	   <i class="fas fa-exclamation-circle"></i>
+			   	   	   <small>Error Msg</small></br>
+		   	   	   </div>
+
+		   	   	   <input type="submit" name="submit" value="Register" class="submit" placeholder="Register">
+			    
+
+				
+			</form>
+			<div>
+				<p>Already have an account?<a href="login.html">Login</a>.</p>
+			</div>
+		
+	</div>
+		
+	
+
+<script type="text/javascript">
+	const form=document.querySelector('.form');
+	const name=document.querySelector('.name');
+	const email=document.querySelector('.email');
+	const psw=document.querySelector('.psw');
+	const cpsw=document.querySelector('.cpsw');
+
+	form.addEventListener('submit',(event)=>{
+		event.preventDefault();
+
+		validate();
+	});
+
+	const sendData = (nameVal,sRate, count)=>{
+		if(sRate===count){
+			alert('Registeration Successfull '+ nameVal);
+			location.href = "technical.html";
+		}
+	}
+
+	//for final deta validation
+
+	const successMsg = (nameVal)=>{
+		let contain=document.getElementsByClassName('container');
+		var count = contain.length-1;
+		for(var i=0;i<contain.length;i++){
+			if(contain[i].className==="container success"){
+				var sRate = i;
+				sendData(nameVal,sRate,count);
+
+			}
+			else
+				return false;
+		}
+	}
+
+	const isEmail=(emailVal)=>{
+		var atSymbol= emailVal.indexOf("@");
+		if(atSymbol<1) return false;
+		var dot = emailVal.lastIndexOf('.');
+		if(dot<=atSymbol+2) return false;
+		if(dot==emailVal.length-1) return false;
+		return true;
+	}
+
+	const validate =()=>{
+		const nameVal=name.value.trim();
+		const emailVal=email.value.trim();
+	    const pswVal=psw.value.trim();
+	    const cpswVal=cpsw.value.trim();
+
+	    //validate name
+
+	    if(nameVal=="")
+	    	setErrorMsg(name ,'name cannot be blank');
+	    else if(nameVal.length<3) 
+	    	setErrorMsg(name ,'name should be min 3 char');
+	    else{
+	    	setSuccessMsg(name);
+
+	    }
+
+
+	     if(emailVal=="")
+	    	setErrorMsg(email ,'email cannot be blank');
+	    else if(!isEmail(emailVal)) 
+	    	setErrorMsg(email ,'not a valid email');
+	    else{
+
+	    var userdata=localStorage.getItem("user");
+	    var retrivedata=JSON.parse(userdata);
+	    
+	    var i=0;
+	    if(retrivedata==0)
+	    	setSuccessMsg(email);
+	     else if(retrivedata!==null)
+	    {
+	    	var l=retrivedata.length;
+	    for( i=0;i<l;i++)
+	    {
+	    	if(retrivedata[i].email==email.value)
+	    	{
+	    		setErrorMsg(email ,'email is already registered');
+	    		break;
+
+
+
+	    	}
+	    	
+	    }
+	    if(i==l)
+	    	setSuccessMsg(email);
+	}
+	       else
+	    	setSuccessMsg(email);
+	    }
+
+	  
+
+	    if(pswVal=="")
+	    	setErrorMsg(psw ,'password cannot be blank');
+	    else if(pswVal.length<=5) 
+	    	setErrorMsg(psw ,'psw should be min 6 char');
+	    else{
+	    	
+	    	setSuccessMsg(psw);
+	    }
+
+	    if(cpswVal=="")
+	    	setErrorMsg(cpsw ,'conform password cannot be blank');
+	    else if(pswVal!=cpswVal) 
+	    	setErrorMsg(cpsw ,'conform password is not same as password');
+	    else{
+	    	
+	    	setSuccessMsg(cpsw);
+	    }
+
+	    successMsg(nameVal);
+
+
+	    // store multiple object using array
+
+	    function sendData (sRate, count){
+		if(sRate===count){
+		const items = (() => {
+		  const fieldValue = localStorage.getItem('user');
+		  return fieldValue === null
+		    ? []
+		    : JSON.parse(fieldValue);
+		})();
+
+		items.push({"name":name.value,"email":email.value,password:psw.value});
+
+		localStorage.setItem('user', JSON.stringify(items));
+	}
+}
+
+const storageMsg = ()=>{
+		let contain=document.getElementsByClassName('container');
+		var count = contain.length-1;
+		for(var i=0;i<contain.length;i++){
+			if(contain[i].className==="container success"){
+				var sRate = i;
+				sendData(sRate,count);
+
+			}
+			else
+				return false;
+		}
+	}
+
+	storageMsg();
+
+}
+
+
+
+function setErrorMsg(input,errormsgs){
+		const Container = input.parentElement;
+		const small = Container.querySelector('small');
+		Container.className = "container error";
+		small.innerText = errormsgs;
+	}
+
+	function setSuccessMsg(input){
+		const Container = input.parentElement;
+		Container.className= "container success";
+	}
+
+	
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 <link rel="stylesheet" type="text/css" href="formval.css">
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+
+</head>
+<body>
+	<div class="change_main">
+		<div class="change_child">
+			<form class="form">
+				<div class="change_container">
+						<label for="curr_pass"><b>CURRENT PASSWORD</b></label>
+						<input type="password" name="curr_pass" class="curr_pass" placeholder="Current Password" required>
+						 <i class="fas fa-check-circle"></i>
+			   	   	     <i class="fas fa-exclamation-circle"></i>
+			   	         <small>Error Msg</small></br>
+				    </div>
+				    <div class="change_container">
+						<label for="change_pass"><b>CHANGE PASSWORD</b></label>
+						<input type="password" name="change_pass" class="change_pass" placeholder="Change Password" required>
+						 <i class="fas fa-check-circle"></i>
+			   	   	    <i class="fas fa-exclamation-circle"></i>
+			   	         <small>Error Msg</small></br>
+				    </div>
+				    <div class="change_container">
+				    	<input type="submit" name="submit3" value="change" class="submit3">
+				    </div>
+					
+				</div>
+			</form>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript">
+		const form=document.querySelector('.form');
+		const curr_pass=document.querySelector('.curr_pass');
+		const change_pass=document.querySelector('.change_pass');
+
+		form.addEventListener('submit',(event)=>{
+		event.preventDefault();
+
+		validation();
+	});
+
+		const validation =()=>{
+
+			 const change_passVal=change_pass.value.trim();
+
+
+			 var userdata=localStorage.getItem("user");
+	         var retrivedata=JSON.parse(userdata);
+	         if(retrivedata!==null){
+	         var l=retrivedata.length;
+	         var i=0;
+	         for( i=0;i<l;i++)
+	         {
+	    	   if(retrivedata[i].password==curr_pass.value)
+	    	 {
+	    	 	setSuccessMsg(curr_pass);
+
+			 	 if(change_passVal=="")
+			 	 { 
+			 
+	    	    setErrorMsg(change_pass ,'password cannot be blank');
+	            }
+	           else if(change_passVal.length<=5) {
+	    	   setErrorMsg(change_pass ,'pass should be min 6 char');
+			 
+	            }
+	        else{
+
+                     var data = localStorage.getItem('user');
+                    if (data != null) {
+                      let user= JSON.parse(data);
+                    user[i].password = change_pass.value;
+                       localStorage.setItem('user', JSON.stringify(user));
+                   }
+
+	    	
+	    	    setSuccessMsg(change_pass);
+	    	    alert('password successfully changed');
+	         }
+	         break;
+	     }
+
+	    	 }
+	    	if(i==l)
+	    		setErrorMsg(curr_pass, 'password not matched');
+
+	    	}
+	    		
+
+		}
+
+  function setErrorMsg(input,errormsgs){
+		const Container = input.parentElement;
+		const small = Container.querySelector('small');
+		Container.className = "change_container error";
+		small.innerText = errormsgs;
+	}
+
+	function setSuccessMsg(input){
+		const Container = input.parentElement;
+		Container.className= "change_container success";
+	}
+
+	</script>
+
+</body>
+</html>

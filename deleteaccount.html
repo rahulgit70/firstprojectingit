@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="formval.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+</head>
+<body>
+	<div class="deleteaccount_main">
+		<div class="deleteaccount_child">
+			<form class="form">
+				
+			<div class="deleteaccount_container">
+				<label for="email"><b>ENTER YOUR EMAIL</b></label>
+				<input type="text" name="email" class="email" placeholder="Enter your email" autocomplete="off" required> 
+				  <i class="fas fa-check-circle"></i>
+			   	   	<i class="fas fa-exclamation-circle"></i>
+			   	    <small>Error Msg</small></br>
+			</div>
+			
+				<div class="deleteaccount_container">
+				<label for="textarea"><b>WHY YOU DELETE YOUR ACCOUNT</b></label>
+				<input type="text" name="texarea" class="textarea" placeholder="Why you delete your account" autocomplete="off" required> 
+				  <i class="fas fa-check-circle"></i>
+			   	   	<i class="fas fa-exclamation-circle"></i>
+			   	    <small>Error Msg</small></br>
+			</div>
+
+            <div class="deleteaccount_container">
+			<input type="submit" name="submit6" class="submit6">
+			</div>
+				
+			</form>
+
+			
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		const form=document.querySelector('.form');
+		const email=document.querySelector('.email');
+
+
+	const textarea=document.querySelector('.textarea');
+
+
+	form.addEventListener('submit',(event)=>{
+		event.preventDefault();
+
+		validation();
+	});
+
+	const validation =()=>{
+
+	const textareaVal=textarea.value.trim();
+	const emailVal=email.value.trim();
+     
+
+	   function removeuser(emailVal) {
+    let userdata = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : [];
+    let index;
+    let i=0;
+    for (let i = 0; i < userdata.length; i++) {
+        if (userdata[i].email === emailVal) {
+        	setSuccessMsg(email);
+          index=i;
+          break;
+        }
+    }
+   
+    if(index === undefined) return 
+    userdata.splice(index, 1);
+    localStorage.setItem('user', JSON.stringify(userdata));
+}
+ 
+	   function removeuserProfile(emailVal) {
+    let userdata = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
+    let index;
+    let i=0;
+    for (let i = 0; i < userdata.length; i++) {
+        if (userdata[i].email === emailVal) {
+        	setSuccessMsg(email);
+          index=i;
+          break;
+        }
+    }
+    
+    if(index === undefined) return 
+    userdata.splice(index, 1);
+    localStorage.setItem('userProfile', JSON.stringify(userdata));
+}
+    
+	   function removeuserlogin(emailVal) {
+    let userdata = localStorage.getItem('userlogin') ? JSON.parse(localStorage.getItem('userlogin')) : [];
+    let index;
+    let i=0;
+    for (let i = 0; i < userdata.length; i++) {
+        if (userdata[i].email === emailVal) {
+        	setSuccessMsg(email);
+          index=i;
+          break;
+        }
+    }
+    
+    if(index === undefined) return 
+    userdata.splice(index, 1);
+    localStorage.setItem('userlogin', JSON.stringify(userdata));
+}
+
+      
+      removeuser(emailVal);
+      removeuserProfile(emailVal);
+      removeuserlogin(emailVal);
+
+	if(textareaVal.length>5)
+	{
+		const items = (() => {
+		  const fieldValue = localStorage.getItem('userdelete');
+		  return fieldValue === null
+		    ? []
+		    : JSON.parse(fieldValue);
+		})();
+
+		items.push({"reason":textarea.value});
+
+		localStorage.setItem('userdelete', JSON.stringify(items));
+
+
+		setSuccessMsg(textarea);
+
+	}
+	else
+		setErrorMsg(textarea ,'please write something more');
+}
+
+function setErrorMsg(input,errormsgs){
+		const Container = input.parentElement;
+		const small = Container.querySelector('small');
+		Container.className = "deleteaccount_container error";
+		small.innerText = errormsgs;
+	}
+
+	function setSuccessMsg(input){
+		const Container = input.parentElement;
+		Container.className= "deleteaccount_container  success";
+	}
+
+
+ 
+
+
+
+
+	</script>
+
+</body>
+</html>
